@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AB.Contracts;
+namespace AB.Persistence.Repos;
 
-public class SupplierForCreationDto
+public class SupplierRepository
 {
+
+
+
 }

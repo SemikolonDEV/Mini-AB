@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AB.Domain.Repositories;
 
-namespace AB.Domain.Repositories
+public interface IUnitOfWork
 {
-    public class IUnitOfWork
-    {
-    }
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

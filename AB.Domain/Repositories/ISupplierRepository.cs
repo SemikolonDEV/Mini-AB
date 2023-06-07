@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AB.Domain.Repositories
+namespace AB.Domain.Repositories;
+
+public class ISupplierRepository
 {
-    public class ISupplierRepository
-    {
-    }
 }

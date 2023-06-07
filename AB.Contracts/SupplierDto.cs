@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AB.Contracts;
 
-public class SupplierForCreationDto
+public class SupplierDto
 {
+
+    public Guid Id { get; set; }
+
 }

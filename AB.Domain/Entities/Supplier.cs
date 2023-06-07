@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AB.Domain.Entities
-{
-    public class Supplier
-    {
+namespace AB.Domain.Entities;
 
-        Guid supplierId;
-    }
+public class Supplier
+{
+
+    public Guid SupplierId { get; set; }
 }
