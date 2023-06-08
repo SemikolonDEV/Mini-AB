@@ -82,6 +82,29 @@ public class CustomerService : ICustomerService
         return customerDto;
     }
 
+    public async Task<CustomerDto> UpdateAsync(Guid customerId, CustomerForUpdateDto customerForUpdate, CancellationToken cancellationToken)
+    {
+        var customer = await _customerRepository.GetByIdAsync(customerId, cancellationToken);
+
+        if (customer is null)
+        {
+            throw new BusinessPartnerNotFoundException(customerId);
+        }
+
+        SetIfContains(customerForUpdate.Salutaion, customer, nameof(customer.Salutation));
+        SetIfContains(customerForUpdate.Name1, customer, nameof(customer.Name1));
+        SetIfContains(customerForUpdate.Name2, customer, nameof(customer.Name2));
+        SetIfContains(customerForUpdate.Email, customer, nameof(customer.Email));
+        SetIfContains(customerForUpdate.Iban, customer, nameof(customer.Iban));
+        SetIfContains(customerForUpdate.PhoneNumber, customer, nameof(customer.PhoneNumber));
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        var customerDto = ConvertToCustomerDto(customer);
+
+        return customerDto;
+    }
+
     private static CustomerDto ConvertToCustomerDto(Customer customer)
     {
         var customerDto = new CustomerDto
@@ -95,5 +118,15 @@ public class CustomerService : ICustomerService
             Iban = customer.Iban,
         };
         return customerDto;
+    }
+
+    public static void SetIfContains<T>(T value, Customer customer, string propertyName)
+    {
+        if (value is not null)
+        {
+            customer.GetType().GetProperty(propertyName).SetValue(customer, value);
+
+        }
+
     }
 }

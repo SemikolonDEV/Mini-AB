@@ -48,4 +48,13 @@ public class CustomerController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("{customerId:guid}")]
+    public async Task<ActionResult<CustomerDto>> UpdateCustomer(Guid customerId, CustomerForUpdateDto customerForUpdate, CancellationToken cancellationToken)
+    {
+        var customerDto = await _customerService.UpdateAsync(customerId, customerForUpdate, cancellationToken);
+
+
+        return Ok(customerDto);
+    }
+
 }
