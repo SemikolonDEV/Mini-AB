@@ -10,7 +10,7 @@ namespace AB.Domain.Repositories;
 public interface ICustomerRepository
 {
     public Task<IEnumerable<Customer>> GetAllAsync(CancellationToken cancellationToken);
-    Task<Customer> GetByIdAsync(Guid customerId, CancellationToken cancellationToken);
-    void Insert(Customer customer);
-    void Remove(Customer customer);
+    public Task<Customer> GetByIdAsync(Guid customerId, CancellationToken cancellationToken);
+    public void Insert(Customer customer);
+    public void Remove(Customer customer);
 }

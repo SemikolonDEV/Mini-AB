@@ -16,5 +16,4 @@ public class CustomerDto
     public string Iban { get; set; }
 
     public string PhoneNumber { get; set; }
-
 }

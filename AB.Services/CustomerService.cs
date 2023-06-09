@@ -21,8 +21,6 @@ public class CustomerService : ICustomerService
 
     public async Task<CustomerDto> CreateAsync(CustomerForCreationDto customerForCreation, CancellationToken cancellationToken = default)
     {
-
-
         var customer = new Customer
         {
             Salutation = customerForCreation.Salutaion,
@@ -46,7 +44,7 @@ public class CustomerService : ICustomerService
     {
         var customer = await _customerRepository.GetByIdAsync(customerId, cancellationToken);
 
-        if (customer == null)
+        if (customer is null)
         {
             throw new BusinessPartnerNotFoundException(customerId);
         }
@@ -122,7 +120,7 @@ public class CustomerService : ICustomerService
 
     public static void SetIfContains<T>(T value, Customer customer, string propertyName)
     {
-        if (value is not null)
+        if (value is not null && !string.IsNullOrWhiteSpace(propertyName))
         {
             customer.GetType().GetProperty(propertyName).SetValue(customer, value);
 

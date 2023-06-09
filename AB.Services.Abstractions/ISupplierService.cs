@@ -4,8 +4,8 @@ namespace AB.Services.Abstractions;
 
 public interface ISupplierService
 {
-    Task<SupplierDto> CreateAsync(SupplierForCreationDto supplierForCreation);
-    Task DeleteAsync(Guid supplierId, CancellationToken cancellationToken);
-    Task<IEnumerable<SupplierDto>> GetAllAsync(CancellationToken cancellationToken);
-    Task<SupplierDto> GetSupplierByIdAsync(Guid supplierId, CancellationToken cancellationToken);
+    public Task<SupplierDto> CreateAsync(SupplierForCreationDto supplierForCreation, CancellationToken cancellationToken);
+    public Task DeleteAsync(Guid supplierId, CancellationToken cancellationToken);
+    public Task<IEnumerable<SupplierDto>> GetAllAsync(CancellationToken cancellationToken);
+    public Task<SupplierDto> GetSupplierByIdAsync(Guid supplierId, CancellationToken cancellationToken);
 }

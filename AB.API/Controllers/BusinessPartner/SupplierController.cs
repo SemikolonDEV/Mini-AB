@@ -28,9 +28,9 @@ public class SupplierController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<CreatedAtActionResult> CreateSupplier([FromBody] SupplierForCreationDto supplierForCreation)
+    public async Task<CreatedAtActionResult> CreateSupplier([FromBody] SupplierForCreationDto supplierForCreation, CancellationToken cancellationToken)
     {
-        var supplierDto = await _supplierService.CreateAsync(supplierForCreation);
+        var supplierDto = await _supplierService.CreateAsync(supplierForCreation, cancellationToken);
 
         return CreatedAtAction(nameof(CreateSupplier), new { id = supplierDto.Id }, supplierDto);
     }
