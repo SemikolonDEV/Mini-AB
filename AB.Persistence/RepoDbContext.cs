@@ -15,6 +15,8 @@ public sealed class RepoDbContext : DbContext
 
     public DbSet<Supplier> Suppliers { get; set; }
 
+    public DbSet<ContactPerson> ContactPersons { get; set; }
+
     public DbSet<Product> Products { get; set; }
 
 }

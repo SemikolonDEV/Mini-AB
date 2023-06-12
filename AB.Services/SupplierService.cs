@@ -3,11 +3,7 @@ using AB.Domain.Entities;
 using AB.Domain.Exceptions;
 using AB.Domain.Repositories;
 using AB.Services.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AB.Services.Converter;
 
 namespace AB.Services
 {
@@ -28,7 +24,14 @@ namespace AB.Services
         {
             var supplier = new Supplier
             {
-
+                Salutation = supplierForCreation.Salutation,
+                Name1 = supplierForCreation.Name1,
+                Name2 = supplierForCreation.Name2,
+                Email = supplierForCreation.Email,
+                PhoneNumber = supplierForCreation.PhoneNumber,
+                TaxId = supplierForCreation.TaxId,
+                PreferredCommunication = CommunicationTypeConverter.ConvertToBusinessValue(supplierForCreation.PreferredCommunication),
+                ContactPersons = supplierForCreation.ContactPersons.ConvertToContactPersonList(),
             };
 
             _supplierRepository.Insert(supplier);
@@ -80,8 +83,18 @@ namespace AB.Services
             var supplierDto = new SupplierDto
             {
                 Id = supplier.SupplierId,
+                Salutation = supplier.Salutation,
+                Name1 = supplier.Name1,
+                Name2 = supplier.Name2,
+                Email = supplier.Email,
+                PhoneNumber = supplier.PhoneNumber,
+                TaxId = supplier.TaxId,
+                PreferredCommunication = CommunicationTypeConverter.ConvertFromBusinessValue(supplier.PreferredCommunication),
+                ContactPersons = supplier.ContactPersons.ConvertToContactPersonDtoList(),
             };
             return supplierDto;
         }
+
+
     }
 }

@@ -18,7 +18,7 @@ public class SupplierForCreationDto
     public string TaxId { get; set; }
 
     [DataMember(Name = "PreferredCommunication", EmitDefaultValue = true)]
-    public PreferredCommunicationType PreferredCommunication { get; set; }
+    public CommunicationType PreferredCommunication { get; set; }
 
     public IEnumerable<ContactPersonDto> ContactPersons { get; set; }
 

@@ -11,6 +11,11 @@ public class SupplierController : ControllerBase
 
     public readonly ISupplierService _supplierService;
 
+    public SupplierController(ISupplierService supplierService)
+    {
+        _supplierService = supplierService;
+    }
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<SupplierDto>>> GetSupplieres(CancellationToken cancellationToken)
     {

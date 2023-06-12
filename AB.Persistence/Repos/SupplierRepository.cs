@@ -20,12 +20,12 @@ public class SupplierRepository : ISupplierRepository
 
     public async Task<IEnumerable<Supplier>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return await _dbContext.Suppliers.ToListAsync(cancellationToken);
+        return await _dbContext.Suppliers.Include(x => x.ContactPersons).ToListAsync(cancellationToken);
     }
 
     public async Task<Supplier> GetByIdAsync(Guid supplierId, CancellationToken cancellationToken)
     {
-        return await _dbContext.Suppliers.FirstOrDefaultAsync(x => x.SupplierId == supplierId, cancellationToken);
+        return await _dbContext.Suppliers.Include(x => x.ContactPersons).FirstOrDefaultAsync(x => x.SupplierId == supplierId, cancellationToken);
     }
 
     public void Insert(Supplier supplier)
