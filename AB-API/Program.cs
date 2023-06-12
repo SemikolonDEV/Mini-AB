@@ -3,6 +3,7 @@ using AB.Persistence;
 using AB.Persistence.Repos;
 using AB.Services;
 using AB.Services.Abstractions;
+using AB_API.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
@@ -31,6 +32,8 @@ builder.Services.AddDbContextPool<RepoDbContext>(builder =>
     builder.UseInMemoryDatabase("test");
 });
 
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
