@@ -18,4 +18,4 @@ PUT products/{id}
 DELETE products/{id}
 
 POST invoices/
-GET invoice/{id}
+GET invoices/{id}
