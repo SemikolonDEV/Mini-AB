@@ -9,7 +9,7 @@ Visualisierung der Rest-API erfolgt via Swagger: Swagger ist unter dem Endpunkt 
 
 Geplante Endpunkte:
 
-PUT suppliers/
+PUT suppliers/{id}
 
 POST products/
 GET products/
